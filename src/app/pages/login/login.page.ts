@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms'
 import { Router } from '@angular/router';
+import { ApiService } from '../../service/api/api.service'
+import { ParameterService } from '../../service/parameters/parameter.service'
 
 @Component({
   selector: 'app-login',
@@ -13,7 +15,9 @@ export class LoginPage implements OnInit {
 
   constructor(
     private router: Router,
-    public formBuilder: FormBuilder) {
+    private api: ApiService,
+    private parameters: ParameterService,
+    private formBuilder: FormBuilder) {
   }
 
   ngOnInit() {
@@ -29,12 +33,13 @@ export class LoginPage implements OnInit {
   doLogin(){
     this.isSubmitted = true;
     console.log(this.loginForm.value)
-    /*this.service.doPost({action : '/main/attemptLogin',postData : values})
+    this.api.doPost({action : '/main/login',postData : this.loginForm.value})
     .then((responseBody : any) => {
       this.loginForm.reset()
+      this.parameters.saveParameters('token:',responseBody.token)
       this.parameters.saveLogin(JSON.stringify(responseBody));
       this.router.navigate(['home']);
-    }).catch(err =>{});*/
+    }).catch(err =>{});
   }
 
 }
