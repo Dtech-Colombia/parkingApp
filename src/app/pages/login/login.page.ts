@@ -26,6 +26,10 @@ export class LoginPage implements OnInit {
       password: ['', [Validators.required,  Validators.minLength(8)]],
     })
   }
+
+  ionViewDidEnter (){
+    this.isSubmitted = false;
+  }
   get errorControl() {
     return this.loginForm.controls;
   }
@@ -34,12 +38,13 @@ export class LoginPage implements OnInit {
     this.isSubmitted = true;
     console.log(this.loginForm.value)
     this.api.doPost({action : '/main/login',postData : this.loginForm.value})
-    .then((responseBody : any) => {
+    .then((user : any) => {
       this.loginForm.reset()
-      this.parameters.saveParameters('token:',responseBody.token)
-      this.parameters.saveLogin(JSON.stringify(responseBody));
-      this.router.navigate(['home']);
+      this.parameters.saveParameters('token:',user.token)
+      this.parameters.saveLogin(JSON.stringify(user));
+      this.router.navigate(['reserve']);
     }).catch(err =>{});
+
   }
 
 }

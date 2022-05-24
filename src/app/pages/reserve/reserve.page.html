@@ -1,9 +1,78 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>reserve</ion-title>
+  <ion-toolbar color="dark" mode="ios">
+    <ion-title>Reserva</ion-title>
   </ion-toolbar>
 </ion-header>
-
-<ion-content>
-
+<ion-content fullscreen="true">
+  <form [formGroup]="reserveForm" (submit)="doReserve()" appFocusDir>
+    <ion-grid>
+      <ion-row>
+        <img src="assets/img/logo.png" />
+      </ion-row>
+      <ion-row>
+        <ion-col size="12" size-sm = "3">
+          <ion-item>
+            <ion-label color="dark">Sede</ion-label>
+            <ion-select formControlName="parking" placeholder="seleccione">
+              <ion-select-option [value]="item" *ngFor="let item of parkings">{{item.names}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-label color="danger" *ngIf="isSubmitted && errorControl.parking.errors?.required"><small>El Campo es
+              obligatorio.</small></ion-label>
+        </ion-col>
+        <ion-col size="12" size-sm = "3">
+          <ion-item>
+            <ion-label >Fecha: {{formatDate(reserveForm.value['initialDate'])}}</ion-label>
+            <ion-button fill="clear" id="open-date-input" slot="end" color="dark">
+              <ion-icon icon="calendar"></ion-icon>
+            </ion-button>
+            <ion-popover trigger="open-date-input" show-backdrop="false">
+              <ng-template >
+                <ion-datetime color="dark" formControlName="initialDate" presentation="date" ></ion-datetime>
+              </ng-template>
+            </ion-popover>
+          </ion-item>
+          <ion-label color="danger" *ngIf="isSubmitted && errorControl.initialDate.errors?.required"><small>El Campo es
+              obligatorio.</small></ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12" size-sm = "3">
+          <ion-item>
+            <ion-label >Hora Inicial: {{formatTime(reserveForm.value['initialTime'])}}</ion-label>
+            <ion-button fill="clear" id="open-date-input-2" slot="end" color="dark">
+              <ion-icon icon="calendar"></ion-icon>
+            </ion-button>
+            <ion-popover trigger="open-date-input-2" show-backdrop="false">
+              <ng-template >
+                <ion-datetime hour-cycle="h23" minuteValues="0,30" color="dark" formControlName="initialTime" presentation="time"></ion-datetime>
+              </ng-template>
+            </ion-popover>
+          </ion-item>
+          <ion-label color="danger" *ngIf="isSubmitted && errorControl.initialTime.errors?.required"><small>El Campo es
+              obligatorio.</small></ion-label>
+        </ion-col>
+        <ion-col size="12" size-sm = "3">
+          <ion-item>
+            <ion-label >Hora Final: {{formatTime(reserveForm.value['finalTime'])}}</ion-label>
+            <ion-button fill="clear" id="open-date-input-3" slot="end" color="dark">
+              <ion-icon icon="calendar"></ion-icon>
+            </ion-button>
+            <ion-popover trigger="open-date-input-3" show-backdrop="false">
+              <ng-template >
+                <ion-datetime hour-cycle="h23" minuteValues="0,30" color="dark" formControlName="finalTime" presentation="time" ></ion-datetime>
+              </ng-template>
+            </ion-popover>
+          </ion-item>
+          <ion-label color="danger" *ngIf="isSubmitted && errorControl.finalTime.errors?.required"><small>El Campo es
+              obligatorio.</small></ion-label>
+        </ion-col>      
+      </ion-row>
+      <ion-row>
+        <ion-col size-md="3">
+          <ion-button type="submit" color="dark" expand="block">Reservar</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
 </ion-content>

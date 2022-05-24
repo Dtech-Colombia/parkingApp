@@ -1,0 +1,21 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /var/www/html/
+hooks:
+  BeforeInstall:
+    - location: scripts/remove_root_dir
+      timeout: 900
+      runas: ec2-user
+  ApplicationStart:
+    - location: scripts/install_dependencies.sh
+      timeout: 300
+      runas: ec2-user
+    - location: scripts/start_server.sh
+      timeout: 300
+      runas: ec2-user
+  ApplicationStop:
+    - location: scripts/stop_server.sh
+      timeout: 300
+      runas: ec2-user

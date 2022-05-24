@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  endPoint: 'http://localhost:8080/'
+  endPoint: 'http://ec2-54-242-201-244.compute-1.amazonaws.com'
 };
 
 /*

@@ -10,7 +10,7 @@ export class ParameterService {
     sessionStorage.setItem(name,values);
   }
 
-  getParameters(name){
+  getParameter (name){
     sessionStorage.getItem(name);
   }
 
@@ -33,7 +33,7 @@ export class ParameterService {
 
   getAuthToken(){
     if(this.isUserLoggenIn())
-      return this.getParameters('token');
+      return this.getParameter('token');
     else
     return null;
   }
