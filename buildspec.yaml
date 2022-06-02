@@ -15,7 +15,8 @@ phases:
   build:
     commands:
       # - echo testing...
-      # - echo building...
+      - echo node version...
+      - ng --version
       -  npm run build:prod
 artifacts:
   files:
