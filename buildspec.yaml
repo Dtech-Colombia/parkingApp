@@ -1,13 +1,11 @@
 version: 0.1
 
 phases:
-  install:
+  pre_build:
     commands:
       - echo installing nodejs...
       - curl -fsSL https://rpm.nodesource.com/setup_16.x | sudo bash -
       - sudo yum install -y nodejs
-  pre_build:
-    commands:
       - echo installing dependencies...
       - npm i -g @angular/cli
       - npm install -g @ionic/cli
