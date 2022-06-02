@@ -24,7 +24,7 @@
         <ion-col size-md="3" >
           <ion-item>
             <ion-label position="floating" color="dark">Contraseña</ion-label>
-            <ion-input formControlName="password" placeholder="******" type="password" required></ion-input>
+            <ion-input formControlName="password" placeholder="******" type="password" required (keyup.enter)="doLogin()"></ion-input>
           </ion-item>
           <ion-label color="danger"  *ngIf="isSubmitted && errorControl.password.errors?.required"><small>El Campo es obligatorio.</small></ion-label>
           <ion-label color="danger"  *ngIf="isSubmitted && errorControl.password.errors?.minlength"><small>El campo debe tener mínimo 8 caracteres.</small></ion-label>

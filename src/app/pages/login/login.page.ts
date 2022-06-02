@@ -35,15 +35,17 @@ export class LoginPage implements OnInit {
   }
 
   doLogin(){
-    this.isSubmitted = true;
-    console.log(this.loginForm.value)
-    this.api.doPost({action : '/main/login',postData : this.loginForm.value})
-    .then((user : any) => {
-      this.loginForm.reset()
-      this.parameters.saveParameters('token:',user.token)
-      this.parameters.saveLogin(JSON.stringify(user));
-      this.router.navigate(['reserve']);
-    }).catch(err =>{});
+    if(this.loginForm.valid){
+      this.isSubmitted = true;
+      console.log(this.loginForm.value)
+      this.api.doPost({action : '/main/login',postData : this.loginForm.value})
+      .then((user : any) => {
+        this.loginForm.reset()
+        this.parameters.saveParameters('token:',user.token)
+        this.parameters.saveLogin(JSON.stringify(user));
+        this.router.navigate(['reserve']);
+      }).catch(err =>{}); 
+    }
 
   }
 

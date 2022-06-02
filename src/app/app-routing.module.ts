@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { GuardService } from './service/guard/guard.service'
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
@@ -9,11 +10,12 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule,)
   },
   {
     path: 'reserve',
-    loadChildren: () => import('./pages/reserve/reserve.module').then( m => m.ReservePageModule)
+    loadChildren: () => import('./pages/reserve/reserve.module').then( m => m.ReservePageModule),
+    canActivate: [GuardService]
   }
 ];
 
