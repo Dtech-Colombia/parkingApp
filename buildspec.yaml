@@ -6,8 +6,6 @@ phases:
       - echo installing nodejs...
       - curl -fsSL https://rpm.nodesource.com/setup_16.x | sudo bash -
       - sudo yum install -y nodejs
-      - curl -sL https://dl.yarnpkg.com/rpm/yarn.repo | sudo tee /etc/yum.repos.d/yarn.repo
-      - sudo yum install yarn
   pre_build:
     commands:
       - echo installing dependencies...
