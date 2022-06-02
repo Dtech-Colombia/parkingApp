@@ -4,7 +4,8 @@ phases:
   install:
     commands:
       - echo installing nodejs...
-      - apt-get install -y nodejs
+      - curl -sL https://deb.nodesource.com/setup_16.x | sudo bash -
+      - sudo apt -y install nodejs
   pre_build:
     commands:
       - echo installing dependencies...
