@@ -22,6 +22,7 @@ export class ReservePage implements OnInit {
   reserveDate: any = null;
   minDate: String = null;
   minTime: String = null;
+  userLogin: String = null;
 
   constructor(
     private router: Router,
@@ -47,7 +48,8 @@ export class ReservePage implements OnInit {
     localDate.setHours(localDate.getHours()+1,0,0,0);
     this.minDate = localDate.toISOString();
     this.minTime = moment(localDate).format('HH:mm');
-    console.log(this.minTime)
+    let user = JSON.parse(this.parameters.getUserLogin());
+    this.userLogin = user.names + ' ' + user.lastName1 + ' ' + user.lastName2 + ' ('+user.role.description+')';
   }
 
   ionViewDidEnter() {
@@ -120,6 +122,11 @@ export class ReservePage implements OnInit {
   formatTime(value: string) {
     if (value)
       return format(parseISO(value), 'HH:mm');
+  }
+
+  logout(){
+    this.parameters.doLogout();
+    this.router.navigate(['login']);
   }
 
 }
