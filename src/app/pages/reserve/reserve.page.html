@@ -44,12 +44,12 @@
             <ion-button fill="clear" id="open-date-input" slot="end" color="dark">
               <ion-icon icon="calendar"></ion-icon>
             </ion-button>
-            <ion-popover trigger="open-date-input" show-backdrop="false" [dismissOnSelect]="true">
+            <ion-modal trigger="open-date-input" show-backdrop="false" [dismissOnSelect]="true">
               <ng-template>
                 <ion-datetime color="dark" formControlName="initialDate" presentation="date" min="{{minDate}}" (ionChange)="calculeMinTime()">
                 </ion-datetime>
               </ng-template>
-            </ion-popover>
+            </ion-modal>
           </ion-item>
           <ion-label color="danger" *ngIf="isSubmitted && errorControl.initialDate.errors?.required"><small>El Campo es
               obligatorio.</small></ion-label>
@@ -62,13 +62,13 @@
             <ion-button fill="clear" id="open-date-input-2" slot="end" color="dark">
               <ion-icon icon="calendar"></ion-icon>
             </ion-button>
-            <ion-popover trigger="open-date-input-2" show-backdrop="false">
+            <ion-modal trigger="open-date-input-2" show-backdrop="false">
               <ng-template>
-                <ion-datetime hour-cycle="h23" minuteValues="0" color="dark" formControlName="initialTime"
+                <ion-datetime hour-cycle="h23" minuteValues="0,15,30,45" color="dark" formControlName="initialTime"
                   presentation="time" [showDefaultButtons]="true" >
                 </ion-datetime>
               </ng-template>
-            </ion-popover>
+            </ion-modal>
           </ion-item>
           <ion-label color="danger" *ngIf="isSubmitted && errorControl.initialTime.errors?.required"><small>El Campo es
               obligatorio.</small></ion-label>
@@ -79,12 +79,12 @@
             <ion-button fill="clear" id="open-date-input-3" slot="end" color="dark">
               <ion-icon icon="calendar"></ion-icon>
             </ion-button>
-            <ion-popover trigger="open-date-input-3" show-backdrop="false">
+            <ion-modal trigger="open-date-input-3" show-backdrop="false">
               <ng-template>
-                <ion-datetime hour-cycle="h23" minuteValues="0" color="dark" formControlName="finalTime"
+                <ion-datetime hour-cycle="h23" minuteValues="0,15,30,45" color="dark" formControlName="finalTime"
                   presentation="time" [showDefaultButtons]="true" ></ion-datetime>
               </ng-template>
-            </ion-popover>
+            </ion-modal>
           </ion-item>
           <ion-label color="danger" *ngIf="isSubmitted && errorControl.finalTime.errors?.required"><small>El Campo es
               obligatorio.</small></ion-label>
