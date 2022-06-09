@@ -44,12 +44,12 @@
             <ion-button fill="clear" id="open-date-input" slot="end" color="dark">
               <ion-icon icon="calendar"></ion-icon>
             </ion-button>
-            <ion-modal trigger="open-date-input" show-backdrop="false" [dismissOnSelect]="true">
+            <ion-popover trigger="open-date-input" show-backdrop="false" [dismissOnSelect]="true">
               <ng-template>
                 <ion-datetime color="dark" formControlName="initialDate" presentation="date" min="{{minDate}}" (ionChange)="calculeMinTime()">
                 </ion-datetime>
               </ng-template>
-            </ion-modal>
+            </ion-popover>
           </ion-item>
           <ion-label color="danger" *ngIf="isSubmitted && errorControl.initialDate.errors?.required"><small>El Campo es
               obligatorio.</small></ion-label>
